@@ -60,31 +60,40 @@ public class Library
 		Logger.rewriteFile(name, path, lst);
 	}
 
-	public void read() throws IOException
+	public void read()
 	{
 		File lib = this.getFile();
 
-		FileReader fr = new FileReader(lib);
-		BufferedReader br = new BufferedReader(fr);
+		FileReader fr;
+		try
+		{
+			fr = new FileReader(lib);
 
-		String line = br.readLine();
-		if (line != null)
-			while (!line.startsWith("}"))
-			{
-				if (!line.startsWith("{") && line.indexOf("=") != -1)
-				{
-					knowlege.put(line.substring(0, line.indexOf("=")), line.substring(line.indexOf("=") + 1));
-				}
-				line = br.readLine();
-				if (line != null)
-				{
-					line = line.trim();
-				}
-				else
-					line = "";
-			}
+			BufferedReader br = new BufferedReader(fr);
 
-		br.close();
+			String line = br.readLine();
+			if (line != null)
+				while (!line.startsWith("}"))
+				{
+					if (!line.startsWith("{") && line.indexOf("=") != -1)
+					{
+						knowlege.put(line.substring(0, line.indexOf("=")), line.substring(line.indexOf("=") + 1));
+					}
+					line = br.readLine();
+					if (line != null)
+					{
+						line = line.trim();
+					}
+					else
+						line = "";
+				}
+
+			br.close();
+		}
+		catch (IOException e)
+		{
+			e.printStackTrace();
+		}
 	}
 
 	public String get(String key)
@@ -92,30 +101,40 @@ public class Library
 		return knowlege.get(key);
 	}
 
-	public void output() throws IOException
+	public void output()
 	{
-		File lib = this.getFile();
-		FileWriter fw = new FileWriter(lib);
-		BufferedWriter bw = new BufferedWriter(fw);
-
-		bw.write("{");
-		bw.newLine();
-
-		Set<String> en = knowlege.keySet();
-		en.stream().forEach(key ->
+		try
 		{
-			try
+			File lib = this.getFile();
+			FileWriter fw;
+
+			fw = new FileWriter(lib);
+
+			BufferedWriter bw = new BufferedWriter(fw);
+
+			bw.write("{");
+			bw.newLine();
+
+			Set<String> en = knowlege.keySet();
+			en.stream().forEach(key ->
 			{
-				bw.write(key + "=" + knowlege.get(key) + "\n");
-			}
-			catch (IOException e)
-			{
-				e.printStackTrace();
-			}
-		});
-		bw.write("}");
-		bw.flush();
-		bw.close();
+				try
+				{
+					bw.write(key + "=" + knowlege.get(key) + "\n");
+				}
+				catch (IOException e)
+				{
+					e.printStackTrace();
+				}
+			});
+			bw.write("}");
+			bw.flush();
+			bw.close();
+		}
+		catch (IOException e1)
+		{
+			e1.printStackTrace();
+		}
 	}
 
 	public void setStopRewriting(boolean stopRewriting)
@@ -134,7 +153,7 @@ public class Library
 		}
 		try
 		{
-			File file = new File(pathb, this.book);
+			File file = new File(pathb, this.book + custExt);
 			if (!file.exists())
 				file.createNewFile();
 			return file;
