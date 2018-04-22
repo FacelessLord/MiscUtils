@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
-import Math.Functions.VFunction;
+import Math.Functions.EFunction;
 import Math.Vec.Vec2;
 
 public class Utils
@@ -339,22 +339,22 @@ public class Utils
 		return ((int) (a * Math.pow(10, precis))) / Math.pow(10, precis);
 	}
 
-	public static double derivPart(VFunction<Double> f, double... ds)
+	public static double derivPart(EFunction f, double... ds)
 	{
 		if (ds.length == 1)
 		{
 			double d = 0.0000001;
-			return (f.count(ds[0] + d) - f.count(ds[0])) / d;
+			return (f.count("dx", ds[0] + d) - f.count("dx", ds[0])) / d;
 		}
 		if (ds.length == 2)
 		{
 			double d = 0.0000001;
-			return (f.count(ds[0] + d, ds[1] + d) - f.count(ds[0], ds[1])) / (d * d);
+			return (f.count("dx", ds[0] + d, "dy", ds[1] + d) - f.count("dx", ds[0], "dy", ds[1])) / (d * d);
 		}
 		return 0;
 	}
 
-	public static double integral(double a, double b, VFunction<Double> f)
+	public static double integral(double a, double b, EFunction f)
 	{
 		// How many times
 		double type = (b - a) * 1000;
@@ -364,12 +364,12 @@ public class Utils
 
 		for (int i = 0; i < type; i++)
 		{
-			sum += f.count(a + min * i + min / 2) * min;
+			sum += f.count("dx", a + min * i + min / 2) * min;
 		}
 		return round(sum, 5);
 	}
 
-	public static double integral2(double a, double b, double c, double d, VFunction<Double> f)
+	public static double integral2(double a, double b, double c, double d, EFunction f)
 	{
 		// How many times
 		double type1 = (b - a) * 1000;
@@ -383,13 +383,13 @@ public class Utils
 		{
 			for (int j = 0; j < type2; j++)
 			{
-				sum += f.count(a + min * i + min / 2, c + min * i + min / 2) * min * min;
+				sum += f.count("dx", a + min * i + min / 2, "dy", c + min * i + min / 2) * min * min;
 			}
 		}
 		return round(sum, 5);
 	}
 
-	public static double integral3(double a, double b, double c, double d, double e, double g, VFunction<Double> f)
+	public static double integral3(double a, double b, double c, double d, double e, double g, EFunction f)
 	{
 		// How many times
 		double type1 = (b - a) * 1000;
@@ -406,7 +406,7 @@ public class Utils
 			{
 				for (int k = 0; k < type3; k++)
 				{
-					sum += f.count(a + min * i + min / 2, c + min * i + min / 2, e + min * i + min / 2) * min * min * min;
+					sum += f.count("dx", a + min * i + min / 2, "dy", c + min * i + min / 2, "dz", e + min * i + min / 2) * min * min * min;
 				}
 			}
 		}
@@ -423,7 +423,7 @@ public class Utils
 	 *            : max = 19; maximal precision at 15
 	 * @return
 	 */
-	public static double integral(double a, double b, VFunction<Double> f, int precis)
+	public static double integral(double a, double b, EFunction f, int precis)
 	{
 		// How many times
 		double type = (b - a) * 1000;
@@ -436,7 +436,7 @@ public class Utils
 			double fu;
 			try
 			{
-				fu = f.count(a + min * i + min / 2);
+				fu = f.count("dx", a + min * i + min / 2);
 			}
 			catch (Exception e)
 			{

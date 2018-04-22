@@ -1,67 +1,44 @@
-package Math.Complex;
+package Math.Spaces;
 
 import Utilities.Logger;
 import Utilities.TypeUtils;
+import Utilities.Utils;
 
-public class Complex extends Quaternion
+public class Complex
 {
 
 	public static final Complex i = new Complex(0, 1);
-	/**
-	 * Eclipse asked me for that
-	 */
-	private static final long serialVersionUID = 2525212334395275395L;
+	public static final Complex one = new Complex(1, 0);
+	public static final Complex zero = new Complex(0, 0);
 
 	public double real = 0;
 	public double imag = 0;
 
-	public Complex(double r)
+	public Complex(double real)
 	{
-		super(r);
+		this.real = real;
 	}
 
 	public Complex(double r, double i)
 	{
-		super(r, i);
+		this.real = r;
+		this.imag = i;
 	}
 
 	public Complex(Complex c)
 	{
-		super(c);
-	}
-
-//	@Override
-//	public String toString()
-//	{
-//		String rr = Utils.roundStr(Utils.round(this.real, 4), 4);
-//		String ri = Utils.roundStr(Math.abs(Utils.round(this.imag, 4)), 4);
-//		String pstr = (!rr.equals("0") ? (rr + " ") : "") + (!ri.equals("0") ? ((this.imag < 0 ? "- " : (rr.equals("0") ? "" : "+ ")) + (Math.abs(this.imag) != 1 ? ri : "") + "i") : "");
-//
-//		return pstr.equals("") ? "0" : pstr;
-//	}
-
-	@Override
-	public double doubleValue()
-	{
-		return this.real;
+		this.real = c.real;
+		this.imag = c.imag;
 	}
 
 	@Override
-	public float floatValue()
+	public String toString()
 	{
-		return (float) this.real;
-	}
+		String rr = Utils.roundStr(Utils.round(this.real, 4), 4);
+		String ri = Utils.roundStr(Math.abs(Utils.round(this.imag, 4)), 4);
+		String pstr = (!rr.equals("0") ? (rr + " ") : "") + (!ri.equals("0") ? ((this.imag < 0 ? "- " : (rr.equals("0") ? "" : "+ ")) + (Math.abs(this.imag) != 1 ? ri : "") + "i") : "");
 
-	@Override
-	public int intValue()
-	{
-		return (int) this.real;
-	}
-
-	@Override
-	public long longValue()
-	{
-		return (long) this.real;
+		return pstr.equals("") ? "0" : pstr;
 	}
 
 	public static Complex parseComplex(String s)

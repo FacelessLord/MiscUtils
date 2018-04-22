@@ -1,7 +1,12 @@
-package Math.Complex;
+package Math.Spaces;
 
 import Utilities.Utils;
 
+/**
+ * Do not use!!
+ * @author lord_faceless 
+ */
+@Deprecated
 public class Quaternion extends Number
 {
 	/**
@@ -81,15 +86,17 @@ public class Quaternion extends Number
 		return new Quaternion(this.real - c.doubleValue(), this.fI, this.fJ, this.fK);
 	}
 
-	public Quaternion mult(Number c)
-	{
-		return new Quaternion(this.real * c.doubleValue(), this.fI * c.doubleValue(), this.fJ * c.doubleValue(), this.fK * c.doubleValue());
-	}
-
-	public Quaternion div(Number c)
-	{
-		return new Quaternion(this.real / c.doubleValue(), this.fI / c.doubleValue(), this.fJ * c.doubleValue(), this.fK * c.doubleValue());
-	}
+	// public Quaternion mult(Number c)
+	// {
+	// return new Quaternion(this.real * c.doubleValue(), this.fI *
+	// c.doubleValue(), this.fJ * c.doubleValue(), this.fK * c.doubleValue());
+	// }
+	//
+	// public Quaternion div(Number c)
+	// {
+	// return new Quaternion(this.real / c.doubleValue(), this.fI /
+	// c.doubleValue(), this.fJ * c.doubleValue(), this.fK * c.doubleValue());
+	// }
 
 	@Override
 	public String toString()

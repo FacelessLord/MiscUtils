@@ -1,7 +1,7 @@
  package Utilities;
 
-import Math.Complex.Complex;
 import Math.Matrix.Matrix2;
+import Math.Spaces.Complex;
 import Math.Vec.Vec2;
 
 public class Transitor
