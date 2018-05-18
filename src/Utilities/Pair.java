@@ -10,4 +10,9 @@ public class Pair<K, V>
 		this.key = key;
 		this.value = value;
 	}
+
+	public void addValue(V v)
+	{
+		
+	}
 }

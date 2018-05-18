@@ -22,7 +22,7 @@ public class Vec3
 		this.y = y;
 		this.z = z;
 	}
-	
+
 	public double length()
 	{
 		return Math.hypot(Math.hypot(this.x, this.y), this.z);
@@ -33,31 +33,63 @@ public class Vec3
 		return new Vec3(this.x + v.x, this.y + v.y, this.z + v.z);
 	}
 
+	public Vec3 addChanged(Vec3 v)
+	{
+		this.x += v.x;
+		this.y += v.y;
+		this.z += v.z;
+		return this;
+	}
+
 	public Vec3 sub(Vec3 v)
 	{
 		return new Vec3(this.x - v.x, this.y - v.y, this.z - v.z);
 	}
 
-	public Vec3 modif(double l)
+	public Vec3 subChanged(Vec3 v)
+	{
+		this.x -= v.x;
+		this.y -= v.y;
+		this.z -= v.z;
+		return this;
+	}
+
+	public Vec3 mult(double l)
 	{
 		return new Vec3(this.x * l, this.y * l, this.z * l);
 	}
 
-	public Vec3 modif(double lx, double ly, double lz)
+	public Vec3 multChanged(double l)
+	{
+		this.x *= l;
+		this.y *= l;
+		this.z *= l;
+		return this;
+	}
+
+	public Vec3 mult(double lx, double ly, double lz)
 	{
 		return new Vec3(this.x * lx, this.y * ly, this.z * lz);
 	}
 
-	public Vec3 divide(double l)
+	public Vec3 div(double l)
 	{
 		return new Vec3(this.x / l, this.y / l, this.z / l);
 	}
 
-	public Vec3 divide(double lx, double ly, double lz)
+	public Vec3 divChanged(double l)
+	{
+		this.x *= l;
+		this.y *= l;
+		this.z *= l;
+		return this;
+	}
+
+	public Vec3 div(double lx, double ly, double lz)
 	{
 		return new Vec3(this.x / lx, this.y / ly, this.z / lz);
 	}
-	
+
 	/**
 	 * this - vector - row
 	 * 
@@ -66,7 +98,7 @@ public class Vec3
 	 */
 	public Vec3 crossProduct(Matrix3 v)
 	{
-		return new Vec3(this.x * v.arr[0][0] + this.y * v.arr[0][1]+ this.z * v.arr[0][2], this.x * v.arr[1][0] + this.y * v.arr[1][1]+ this.z * v.arr[1][2],this.x * v.arr[2][0] + this.y * v.arr[2][1]+ this.z * v.arr[2][2]);
+		return new Vec3(this.x * v.arr[0][0] + this.y * v.arr[0][1] + this.z * v.arr[0][2], this.x * v.arr[1][0] + this.y * v.arr[1][1] + this.z * v.arr[1][2], this.x * v.arr[2][0] + this.y * v.arr[2][1] + this.z * v.arr[2][2]);
 	}
 
 	public void normalize()
@@ -124,5 +156,35 @@ public class Vec3
 	public Vec3 copy()
 	{
 		return new Vec3(this.x, this.y, this.z);
+	}
+
+	public float fx()
+	{
+		return (float) this.x;
+	}
+
+	public float fy()
+	{
+		return (float) this.y;
+	}
+
+	public float fz()
+	{
+		return (float) this.z;
+	}
+
+	public int ix()
+	{
+		return (int) this.x;
+	}
+
+	public int iy()
+	{
+		return (int) this.y;
+	}
+
+	public int iz()
+	{
+		return (int) this.z;
 	}
 }

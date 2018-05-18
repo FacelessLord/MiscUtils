@@ -5,6 +5,24 @@ import java.util.List;
 
 public class TypeUtils
 {
+	
+	/**
+	 * List of Strings with letters in upper case
+	 */
+	public static List<String> alphUC = new ArrayList<String>();
+	/**
+	 * List of Strings with letters in lower case
+	 */
+	public static List<String> alphLC = new ArrayList<String>();
+	/**
+	 * List of Strings with numbers
+	 */
+	public static List<String> num = new ArrayList<String>();
+
+	static
+	{
+		initStr();
+	}
 	// ===========================Strings==================================
 
 	public static void initStr()
@@ -86,19 +104,6 @@ public class TypeUtils
 	}
 
 	/**
-	 * List of Strings with letters in upper case
-	 */
-	public static List<String> alphUC = new ArrayList<String>();
-	/**
-	 * List of Strings with letters in lower case
-	 */
-	public static List<String> alphLC = new ArrayList<String>();
-	/**
-	 * List of Strings with numbers
-	 */
-	public static List<String> num = new ArrayList<String>();
-
-	/**
 	 * @param s
 	 *            String
 	 * @param Case
@@ -173,7 +178,7 @@ public class TypeUtils
 		{
 			String Char = s.substring(i, i + 1);
 			if (num.contains(Char) || Char.equals("-"))
-				lastId = i+1;
+				lastId = i + 1;
 			else
 				return lastId;
 		}

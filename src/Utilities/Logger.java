@@ -239,6 +239,25 @@ public class Logger
 		System.out.println("[Info]" + out);
 		addToLog("[Info]" + out);
 	}
+	public static void arrminfo(Object[] s)
+	{
+		String out = Utils.compactArr(s);
+		System.out.println("[Info]" + out);
+		addToLog("[Info]" + out);
+	}
+	public static void arrminfo(int[] s)
+	{
+		String out = Utils.compactArr(s);
+		System.out.println("[Info]" + out);
+		addToLog("[Info]" + out);
+	}
+	
+	public static void minfoPref(String d,Object... s)
+	{
+		String out = Utils.compactWithPref(d,s);
+		System.out.println("[Info]" + out);
+		addToLog("[Info]" + out);
+	}
 
 	public static void warn(Object s)
 	{

@@ -15,6 +15,14 @@ public class Utils
 {
 	public static Random r = new Random();
 
+	public static Color rainbow(double time)
+	{
+		float r = (float) ((Math.sin(time * Math.PI / 3 + 5 * Math.PI / 6)) + 1) / 2f;
+		float g = (float) ((Math.sin(time * Math.PI / 3 + Math.PI / 6) + 1)) / 2f;
+		float b = (float) ((Math.sin(time * Math.PI / 3 - Math.PI / 2) + 1)) / 2f;
+		return new Color(r, g, b, 1);
+	}
+
 	public static void arraycopy(char[] src, char[] target, int start, int end)
 	{
 		for (int i = start; i < end; i++)
@@ -100,18 +108,44 @@ public class Utils
 		return s;
 	}
 
-	// public static String compact(String d, Object... ss)
-	// {
-	// String s = "";
-	// for (int i = 0; i < ss.length; i++)
-	// {
-	// s += toString(ss[i]);
-	// if (i != ss.length - 1)
-	// s += d;
-	// }
-	//
-	// return s;
-	// }
+	public static String compactArr(Object[] ss)
+	{
+		String s = "";
+		for (int i = 0; i < ss.length; i++)
+		{
+			s += toString(ss[i]);
+			if (i != ss.length - 1)
+				s += d;
+		}
+
+		return s;
+	}
+
+	public static String compactArr(int[] ss)
+	{
+		String s = "";
+		for (int i = 0; i < ss.length; i++)
+		{
+			s += toString(ss[i]);
+			if (i != ss.length - 1)
+				s += d;
+		}
+
+		return s;
+	}
+
+	public static String compactWithPref(String d, Object... ss)
+	{
+		String s = "";
+		for (int i = 0; i < ss.length; i++)
+		{
+			s += toString(ss[i]);
+			if (i != ss.length - 1)
+				s += d;
+		}
+
+		return s;
+	}
 
 	/**
 	 * @param value
@@ -776,6 +810,19 @@ public class Utils
 	}
 
 	public static int cycle(int i, int min, int max)
+	{
+		if (i > max)
+		{
+			return min;
+		}
+		if (i < min)
+		{
+			return max;
+		}
+		return i;
+	}
+
+	public static double cycle(double i, double min, double max)
 	{
 		if (i > max)
 		{

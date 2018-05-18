@@ -365,9 +365,9 @@ public class Configuration
 					if (line != null)
 					{
 						line = line.trim();
-						if (!line.startsWith("|"))
+						if (!line.startsWith("|"))//category
 						{
-							if (!line.startsWith("#"))
+							if (!line.startsWith("#"))//coment NYI
 							{
 								int equalStart = line.indexOf("=");
 								String value = line.substring(equalStart + 1);

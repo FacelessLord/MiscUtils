@@ -26,6 +26,15 @@ public class Vec2
 		return Math.hypot(this.x, this.y);
 	}
 
+	public void limit(double length)
+	{
+		if (this.length() > length)
+		{
+			this.normalize();
+			this.multChanged(length);
+		}
+	}
+
 	public Vec2 add(Vec2 v)
 	{
 		return new Vec2(this.x + v.x, this.y + v.y).setTag(this.tag);
@@ -45,6 +54,12 @@ public class Vec2
 	public Vec2 mult(double l)
 	{
 		return new Vec2(this.x * l, this.y * l).setTag(this.tag);
+	}
+
+	public void multChanged(double l)
+	{
+		this.x *= l;
+		this.y *= l;
 	}
 
 	public Vec2 mult(double lx, double ly)
@@ -78,6 +93,11 @@ public class Vec2
 	public double dotProduct(Vec2 v)
 	{
 		return this.x * v.x + this.y * v.y;
+	}
+
+	public double pseudoDotProduct(Vec2 v)
+	{
+		return this.x * v.y - this.y * v.x;
 	}
 
 	/**
